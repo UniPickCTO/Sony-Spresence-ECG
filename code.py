@@ -1,11 +1,7 @@
 import time
-# import board
-# from analogio import AnalogIn
 from ulab import numpy as np
 import supervisor
-# from ulab import scipy.signal.argrelextrema
-# analog_in = AnalogIn(board.A5)
-samplingrate = 100
+samplingrate = 1000
 sample = []
 rpeaks = []
 templates = []
@@ -15,7 +11,7 @@ tpeaks = []
 ppeaks = []
 
 def get_voltage(pin):
-    value = (pin * 5) / 65536
+    value = (pin * 5) / 65535
     # print((value,))
     return value
 
@@ -64,10 +60,6 @@ def ecg_findpeaks_nabian2018(signal, sampling_rate=1000):
 
         if i == (i - window_size + rpeak):
             peaks[i] = 1
-
-# rpeaks = np.where(peaks == 1, signal, [])[0]
-
-    # min_distance = 200
 
     return peaks
 def find_templates():
@@ -172,7 +164,7 @@ def printnew():
         print((sample[i], rpeaks[i], a, b, c, d, ))
         time.sleep(0.2)
     time.sleep(2)
-# while True:
+while True:
 # if supervisor.runtime.serial_bytes_available:
 #    value = input()
     #if value == 'start':
